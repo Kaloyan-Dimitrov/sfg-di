@@ -1,9 +1,6 @@
 package com.devcraft.sfgdi;
 
-import com.devcraft.sfgdi.controllers.ConstructorInjectedController;
-import com.devcraft.sfgdi.controllers.MyController;
-import com.devcraft.sfgdi.controllers.PropertyInjectedController;
-import com.devcraft.sfgdi.controllers.SetterInjectedController;
+import com.devcraft.sfgdi.controllers.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -13,10 +10,12 @@ public class SfgDiApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(SfgDiApplication.class, args);
-		MyController myController = (MyController) ctx.getBean("myController");
 
-		String greeting = myController.helloWorld();
-		System.out.println(greeting);
+		I18nController i18nController = (I18nController) ctx.getBean("i18nController");
+		System.out.println(i18nController.sayHello());
+
+		MyController myController = (MyController) ctx.getBean("myController");
+		System.out.println(myController.helloWorld());
 
 		PropertyInjectedController propertyInjectedController = (PropertyInjectedController) ctx.getBean("propertyInjectedController");
 		System.out.println(propertyInjectedController.getGreeting());
